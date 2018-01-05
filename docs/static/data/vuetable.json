@@ -1,0 +1,58 @@
+{
+    "success": true,
+    "msg": "请求成功",
+    "errorCode": 0,
+    "data": {
+        "count": 5,
+        "rows": [{
+                "id": 100005,
+                "merchantName": "颜值公司2",
+                "bailThreshold": 1000.00,
+                "channelRate": 0.08,
+                "bail": 1000000.00,
+                "state": 0,
+                "contactPhone": "18116152145",
+                "contactName": "xxxx"
+            },
+            {
+                "id": 100004,
+                "merchantName": "颜值公司1",
+                "bailThreshold": 1000.00,
+                "channelRate": 0.08,
+                "bail": 1000000.00,
+                "state": 0,
+                "contactPhone": "18116152145",
+                "contactName": "xxxx"
+            },
+            {
+                "id": 100003,
+                "merchantName": "颜值公司3",
+                "bailThreshold": 1000.00,
+                "channelRate": 0.08,
+                "bail": 1000000.00,
+                "state": 0,
+                "contactPhone": "18116152145",
+                "contactName": "xxxx"
+            }, {
+                "id": 100002,
+                "merchantName": "颜值公司4",
+                "bailThreshold": 1000.00,
+                "channelRate": 0.08,
+                "bail": 1000000.00,
+                "state": 0,
+                "contactPhone": "181161521455",
+                "contactName": "xxxx"
+            },
+            {
+                "id": 100001,
+                "merchantName": "颜值公司6",
+                "bailThreshold": 1000.00,
+                "channelRate": 0.08,
+                "bail": 1000000.00,
+                "state": 0,
+                "contactPhone": "18116152145",
+                "contactName": "xxxx"
+            }
+        ]
+    }
+}
