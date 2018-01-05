@@ -1,0 +1,52 @@
+{
+    "success": true,
+    "msg": "请求成功",
+    "errorCode": 100000,
+    "data": {
+        "count":6,
+        "rows":[
+        {
+            "merchantId":1, 
+            "merchantName":"靓分期",
+            "totalAmount":100000,
+  
+            "updateTime":"2017-12-30 11:30:00" 
+        },
+        {
+            "merchantId":2, 
+            "merchantName":"靓分期2",
+            "totalAmount":100000,
+      
+            "updateTime":"2017-12-30 11:30:00" 
+        },
+        {
+            "merchantId":3, 
+            "merchantName":"靓分期3",
+            "totalAmount":100000,
+   
+            "updateTime":"2017-12-30 11:30:00" 
+        },
+        {
+            "merchantId":4, 
+            "merchantName":"靓分期4",
+            "totalAmount":100000,
+        
+            "updateTime":"2017-12-30 11:30:00" 
+        },
+        {
+            "merchantId":5, 
+            "merchantName":"靓分期5",
+            "totalAmount":100000,
+      
+            "updateTime":"2017-12-30 11:30:00" 
+        },
+        {
+            "merchantId":6, 
+            "merchantName":"靓分期6",
+            "totalAmount":100000,
+           
+            "updateTime":"2017-12-30 11:30:00" 
+        }
+        ]                                        
+    }
+}
