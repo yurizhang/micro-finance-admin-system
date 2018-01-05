@@ -1,0 +1,14 @@
+/* Handle 组件 */
+.handle-box{
+    margin-bottom: 20px;
+}
+.handle-select{
+    width: 120px;
+}
+.handle-input{
+    width: 200px;
+    display: inline-block;
+}
+.handle-box-form{
+    margin: 50px
+}

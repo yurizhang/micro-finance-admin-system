@@ -1,0 +1,15 @@
+{
+    "success": true,
+    "msg": "请求成功",
+    "errorCode": 0,
+    "data": {
+        "id": 10000,
+        "contactName": "张小白",
+        "contactPhone": "13813803724",
+        "merchantName": "颜值公司",
+        "bailThreshold": 1000.00,
+        "channelRate": 0.08,
+        "bail": 1000000.00
+
+    }
+}

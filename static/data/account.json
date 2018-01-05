@@ -1,0 +1,52 @@
+{
+    "success": true,
+    "msg": "请求成功",
+    "errorCode": 100000,
+    "data": {
+        "count":6,
+        "rows":[
+        {
+            "merchantId":1, 
+            "merchantName":"靓分期1",
+            "totalMarginAmount":100000,
+            "totalPrincipalAmount":100000,
+            "totalInterestFeeAmount":100000
+        },
+        {
+            "merchantId":2, 
+            "merchantName":"靓分期2",
+            "totalMarginAmount":100000,
+            "totalPrincipalAmount":100000,
+            "totalInterestFeeAmount":100000
+        },
+        {
+            "merchantId":3, 
+            "merchantName":"靓分期3",
+            "totalMarginAmount":100000,
+            "totalPrincipalAmount":100000,
+            "totalInterestFeeAmount":100000
+        },
+        {
+            "merchantId":4, 
+            "merchantName":"靓分期4",
+            "totalMarginAmount":100000,
+            "totalPrincipalAmount":100000,
+            "totalInterestFeeAmount":100000
+        },
+        {
+            "merchantId":5, 
+            "merchantName":"靓分期5",
+            "totalMarginAmount":100000,
+            "totalPrincipalAmount":100000,
+            "totalInterestFeeAmount":100000
+        },
+        {
+            "merchantId":6, 
+            "merchantName":"靓分期6",
+            "totalMarginAmount":100000,
+            "totalPrincipalAmount":100000,
+            "totalInterestFeeAmount":100000
+        }
+        ]                                        
+    }
+}
