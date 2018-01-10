@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no,minimal-ui">
+<meta content=yes name=apple-mobile-web-app-capable>
+<meta content=yes name=apple-touch-fullscreen>
+<meta content="telephone=no,email=no" name=format-detection>
+
+<head>
+    <title>Gird示例</title>
+    <style>
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /*表示2列*/
+            grid-template-rows: 1fr 2fr 1fr 2fr;
+            /*第二行的高是第一行的2倍,我们现在可以设置行高之间的关系。如果我们把前面的行高设成 1fr ，最后一个则设置为 3fr，这意味着第二行的行高是第一行的 3 倍：*/
+            grid-column-gap: 1px;
+            /*列之间的线*/
+            grid-row-gap: 1px;
+            /*行之间的线隔*/
+            background-color: rgb(117, 112, 112);
+        }
+
+        @media screen and (min-width: 500px) {
+            /*超过500显示三列*/
+            .wrapper {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        @media screen and (min-width: 800px) {
+            /*超过800四列*/
+            .wrapper {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        .letter {
+            background-color: #0069b3;
+            display: flex;
+            justify-content: center;
+            /*flex的相差属性居中对齐*/
+            align-items: center;
+            /*容器里元素垂直居中*/
+            padding: 20px;
+            font-size: 70px;
+            color: white;
+            line-height: 1;
+            font-family: 'hobeaux-rococeaux-background', Helvetica;
+            font-weight: 200;
+            cursor: pointer;
+            transition: all .3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="letter">
+            Aa
+        </div>
+
+        <div class="letter">
+            Bb
+        </div>
+
+        <div class='letter'>
+            Cc
+        </div>
+        <div class='letter'>
+            Dd
+        </div>
+        <div class="letter">
+            Ee
+        </div>
+
+        <div class="letter">
+            Ff
+        </div>
+
+        <div class='letter'>
+            Gg
+        </div>
+        <div class='letter'>
+            Hh
+        </div>
+        <div class="letter">
+            Ii
+        </div>
+
+        <div class="letter">
+            Jj
+        </div>
+
+        <div class='letter'>
+            Kk
+        </div>
+        <div class='letter'>
+            Mm
+        </div>
+
+    </div>
+</body>
+
+</html>
