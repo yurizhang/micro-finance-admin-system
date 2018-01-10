@@ -169,8 +169,10 @@
                     self.tableData = res.data.data.rows;
                     self.total=res.data.data.count || 0;
                     self.is_loading = false;
+                    
                 }).catch(()=>{
-                    self.is_loading = true;
+                    self.is_loading = false;
+
                 });
             },
             search(){

@@ -31,8 +31,8 @@
             <el-table-column prop="merchantName" label="商户名称"></el-table-column>
          
             <el-table-column prop="totalAmount" label="保证金总额" width="100"></el-table-column>
-            <el-table-column prop="avaliableAmount" label="可提金额" width="100"></el-table-column>
-            <el-table-column prop="freezeAmount" label="冻结金额" width="100"></el-table-column>
+            <el-table-column prop="availableAmount" label="可提金额" width="100"></el-table-column>
+            <el-table-column prop="frozenAmount" label="冻结金额" width="100"></el-table-column>
             <el-table-column prop="updateTime" label="更新时间" width="160"></el-table-column>
 
             <el-table-column label="操作" width="280">
@@ -62,8 +62,8 @@
                 </el-form-item>
 
                 <el-form-item label="原可提保证金金额：" :label-width="formLabelWidth">{{form.totalAmount}}</el-form-item>
-                <el-form-item label="提现后可提金额：" :label-width="formLabelWidth">{{form.avaliableAmount-form.amount}}</el-form-item>
-                <el-form-item label="冻结金融：" :label-width="formLabelWidth">{{form.freezeAmount}}</el-form-item>
+                <el-form-item label="提现后可提金额：" :label-width="formLabelWidth">{{form.availableAmount-form.amount}}</el-form-item>
+                <el-form-item label="冻结金融：" :label-width="formLabelWidth">{{form.frozenAmount}}</el-form-item>
                 <el-form-item label="提现后保证总额：" :label-width="formLabelWidth">{{form.totalAmount-form.amount}}</el-form-item>                
         
             </el-form>
@@ -79,8 +79,8 @@
                     <el-input v-model.number="form.amount" auto-complete="off"></el-input>
                 </el-form-item>
                 <el-form-item label="原保证金金额：" :label-width="formLabelWidth">{{form.totalAmount}}</el-form-item>
-                <el-form-item label="充值后可提金额：" :label-width="formLabelWidth">{{form.avaliableAmount+form.amount}}</el-form-item>
-                <el-form-item label="冻结金融：" :label-width="formLabelWidth">{{form.freezeAmount}}</el-form-item>
+                <el-form-item label="充值后可提金额：" :label-width="formLabelWidth">{{form.availableAmount+form.amount}}</el-form-item>
+                <el-form-item label="冻结金融：" :label-width="formLabelWidth">{{form.frozenAmount}}</el-form-item>
                 <el-form-item label="充值后保证总额：" :label-width="formLabelWidth">{{form.totalAmount+form.amount}}</el-form-item>        
             </el-form>
             <div slot="footer" class="dialog-footer">
@@ -104,13 +104,13 @@
                 <el-table-column property="amountAfter" label="充值/提现后保证金金额"></el-table-column>             
                 <el-table-column property="updateTime" label="提现/充值时间"></el-table-column>
                 <el-table-column property="operatorName" label="操作人"></el-table-column>   
-                <el-table-column property="addSerialNum" label="流水号"></el-table-column>
+                <el-table-column property="supplySerialNum" label="流水号"></el-table-column>
                 <el-table-column property="remark" label="备注"></el-table-column>
 
                 <el-table-column label="操作" width="200" fixed="right">
                     <template slot-scope="scope">
-                        <el-button size="small" type="danger" @click="serialBumber(scope.$index, scope.row)">{{scope.row.serialNumer? scope.row.serialNumer:'添加备注'}}</el-button>                                        
-                        <el-button size="small" type="danger" @click="serialBumber(scope.$index, scope.row)">{{scope.row.serialNumer? scope.row.serialNumer:'录入流水'}}</el-button>              
+                        <el-button size="small" type="danger" @click="serialBumber(scope.$index, scope.row,1)">添加备注</el-button>                                        
+                        <el-button size="small" type="danger" @click="serialBumber(scope.$index, scope.row,2)">录入流水</el-button>              
                     </template>
                 </el-table-column>
             </el-table>
@@ -146,8 +146,8 @@
                    "amount": 0,
                    "merchantId":0,
                    "totalAmount":0,  //保证金总额
-                   "avaliableAmount":0, //可用金额
-                   "freezeAmount":0 //冻结金额 ,                                     
+                   "availableAmount":0, //可用金额
+                   "frozenAmount":0 //冻结金额 ,                                     
                 },
     
 
@@ -171,8 +171,8 @@
             getData(){
                 let self = this;
                 let request={
-                    select_word:self.select_word,
-                    merchantId:self.select_word,
+                    selectWord:self.select_word,
+                    //merchantId:self.select_word,
                     start:(self.cur_page-1)*10,
                     limit:10  //每页显示10条
                 }
@@ -213,8 +213,8 @@
                 this.form.amount= 0;
                 this.form.merchantId=row.merchantId;
                 this.form.totalAmount=row.totalAmount;
-                this.form.avaliableAmount=row.avaliableAmount;
-                this.form.freezeAmount=row.freezeAmount;
+                this.form.availableAmount=row.availableAmount;
+                this.form.frozenAmount=row.frozenAmount;
 
                 if(dtype==1){
                     this.dialogFormVisible = true;
@@ -227,28 +227,52 @@
                     this.historyInfo(row.merchantId)
                 }
             },
-            serialBumber(index, row) {
-                this.$prompt('请输入'+row.name+'流水', '提示', {
+            serialBumber(index, row, dtype) {
+                let tempString=dtype==1? '备注' : '流水';
+                this.$prompt('请输入'+row.merchantName+tempString, '提示', {
                     confirmButtonText: '确定',
                     inputPlaceholder:"流水号由数字组成",
                     cancelButtonText: '取消',
-                    inputPattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{2,20}$/,
+                    //inputPattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{2,20}$/,  //不需要验证
                     inputErrorMessage: '格式不正确，应该由2-20位数字和字符组成'
                 }).then(({ value }) => {
-                    this.$message({
-                        type: 'success',
-                        message: '你的流水号: ' + value
+                    
+                    const request={
+                        "id":row.id, //记录id Integer
+                        "remark": dtype==1? value :'', //追加备注
+                        "supplySerialNum": dtype==2? value :'', //追加流水号  //留空表示不修改
+                    }
+                    this.$axios.post(__URILIST[17],request).then((res) => {                        
+                        
+                        if(dtype==1){
+                            this.gridData[index].remark=value;
+                        }else{
+                            this.gridData[index].supplySerialNum=value;
+                        }                   
+                        this.$message({
+                            type: 'success',
+                            message: '恭喜您操作成功! '   // + value   //考虑成功后写到的数据，反应到view里
+                        });
+
+                    }).catch(error=>{
+                        this.$alert(error, '错误提示', {
+                            confirmButtonText: '确定'                    
+                        });
                     });
+
+
+
+
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '取消输入'
+                        message: '您取消了操作'
                     });       
                 });
             },
             CheckAmount(){
-                //console.log(this.form.avaliableAmount-this.form.amount);
-                if(this.dialogFormVisible && this.form.amount && this.form.avaliableAmount-this.form.amount<0 ){
+                //console.log(this.form.availableAmount-this.form.amount);
+                if(this.dialogFormVisible && this.form.amount && this.form.availableAmount-this.form.amount<0 ){
                     this.$message({
                         type: 'error',
                         message: '提取额度过大，产生负数了.'

@@ -94,7 +94,8 @@
         },
         created(){
                 // this.$router.push({ path: '/', query: { from: 'list' }})
-                let id=parseInt(this.$route.query.id,10)||0;   //0表示 显示全部                
+                let id=parseInt(this.$route.query.id,10) || 0;   //0表示 显示全部   
+                this.form.id=id;       
                 if(id>0){
                     this.breadcrump='商户信息修改';
                     this.$axios.post(__URILIST[2], {id:id}).then((res) => {
@@ -131,7 +132,7 @@
                     //         contactName:"xxxx" //商户联系人姓名
                     //     }
                         let cur_page=parseInt(this.$route.query.cur_page,10)||0;   //当前页
-                        let url=this.id==0 ?__URILIST[4]:__URILIST[3];  //3 update 4 add
+                        let url=this.form.id==0 ?__URILIST[4]:__URILIST[3];  //3 update 4 add
                         this.$axios.post(url, this.form).then((res) => {
                             this.$message.success('数据操作成功！'); 
                             this.$router.push({ path: '/merchantlist', query: { cur_page: cur_page }})   

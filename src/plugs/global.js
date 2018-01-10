@@ -24,7 +24,7 @@ _URILIST[0]='/api/merchant/queryList/';
 URILIST[1]=DomainName1+'/ola/api/merchant/delete/';  //删除商户
 _URILIST[1]='/api/merchant/common/';
 
-URILIST[2]=DomainName1+'/ola/merchant/queryById/';  //查询商户信息
+URILIST[2]=DomainName1+'/ola/api/merchant/queryById/';  //查询商户信息
 _URILIST[2]='/api/merchant/queryById/';
 
 
@@ -54,30 +54,31 @@ _URILIST[9]='/api/merchant/common/';
 
 //帐户管理
 
-URILIST[10]=DomainName3+'/account/main/view';  //商户查询 GET
+URILIST[10]=DomainName3+'/back/account/view';  //商户查询 GET
 _URILIST[10]='./static/data/account.json';
 
-URILIST[11]=DomainName3+'/margin/account/query';  //保证金账户GET
+URILIST[11]=DomainName3+'/back/account/magrin/query';  //保证金账户GET
 _URILIST[11]='./static/data/bail.json';
 
-URILIST[12]=DomainName3+'/interestfee/account/query';  //息费查询列表账户GET
+URILIST[12]=DomainName3+'/back/account/interest/fee/query';  //息费查询列表账户GET
 _URILIST[12]='./static/data/repayment.json';
 
 
-URILIST[13]=DomainName3+'/margin/account/recharge';  //保证金充值  
+URILIST[13]=DomainName3+'/back/account/margin/recharge';  //保证金充值  
 _URILIST[13]='./static/data/recharge.json';
 
-URILIST[14]=DomainName3+'/margin/account/postal';  //保证金提现
+URILIST[14]=DomainName3+'/back/account/margin/postal';  //保证金提现
 _URILIST[14]='./static/data/postal.json';
 
 
-URILIST[15]=DomainName3+'/interestfee/account/postal';  //息费提现
+URILIST[15]=DomainName3+'/back/account/interest/fee/postal';  //息费提现
 _URILIST[15]='./static/data/interestfee_postal.json';
 
-URILIST[16]=DomainName3+'/account/change/record/query';  //历史记录
+URILIST[16]=DomainName3+'/back/account/change/record/query';  //历史记录
 _URILIST[16]='./static/data/history.json';
 
-
+URILIST[17]=DomainName3+'/back/account/change/supply';  //历史记录
+_URILIST[17]='/api/merchant/common/';
 
 
 if(_PRODUCT=='DEV'){

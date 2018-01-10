@@ -78,8 +78,8 @@
             getData(){
                 let self = this;  
                 let request={
-                    select_word:self.select_word,
-                    merchantId:self.select_word,
+                    selectWord:self.select_word,
+                    //merchantId:self.select_word,
                     start:(self.cur_page-1)*10,
                     limit:10  //每页显示10条
                 }

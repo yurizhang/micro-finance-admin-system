@@ -45,13 +45,10 @@
 <script>
     export default {
         data() {
-            return {
-                url: './static/infolist.json',
-                tableData: [],
-                            
-                select_cate: '',  //搜索关键字              
-              
-                is_search: false,  //表示当前是不是正在搜索 
+            return {                
+                tableData: [],                            
+                select_cate: '',  //搜索关键字             
+                 is_search: false,  //表示当前是不是正在搜索 
                 //表单字段宽度
                 loanDate: '',
                 // 表格
@@ -87,7 +84,7 @@
             }
         },
         created(){
-            this.getData();
+           // this.getData();
         },
         computed: {
             data(){
@@ -116,7 +113,16 @@
                 })
             },
             search(){
-                this.is_search = true;
+                //this.is_search = true;
+                 this.$alert('功能暂未开放', '提示', {
+                    confirmButtonText: '确定',
+                    callback: action => {
+          
+                    }
+                });
+
+
+
             },
             formatter(row, column) {
                 //格式 化数据

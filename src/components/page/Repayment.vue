@@ -80,11 +80,14 @@
                 <el-table-column property="amountAfter" label="息费账户余额"></el-table-column>
                 <el-table-column property="updateTime" label="提现时间"></el-table-column>
                 <el-table-column property="operatorName" label="提现操作人"></el-table-column>
-                <el-table-column property="addSerialNum" label="流水"></el-table-column>
+                <el-table-column property="remark" label="备注"></el-table-column>
+                <el-table-column property="supplySerialNum" label="流水"></el-table-column>
 
-                <el-table-column label="操作" width="100" fixed="right">
+                <el-table-column label="操作" width="200" fixed="right">
                     <template slot-scope="scope">                                       
-                         <el-button size="small" type="danger" @click="serialBumber(scope.$index, scope.row)">录入流水号</el-button>              
+                         
+                         <el-button size="small" type="danger" @click="serialBumber(scope.$index, scope.row,1)">添加备注</el-button>                                        
+                         <el-button size="small" type="danger" @click="serialBumber(scope.$index, scope.row,2)">录入流水</el-button>                                      
                                          
                     </template>
                 </el-table-column>
@@ -139,8 +142,8 @@
             getData(){
                 let self = this;
                 let request={
-                    select_word:self.select_word,
-                    merchantId:self.select_word,
+                    selectWord:self.select_word,
+                    //merchantId:self.select_word,
                     start:(self.cur_page-1)*10,
                     limit:10  //每页显示10条
                 }
@@ -184,22 +187,45 @@
                     this.historyInfo(this.form.merchantId);
                 }
             },
-            serialBumber(index, row) {
-                this.$prompt('请输入'+row.name+'流水', '提示', {
+            serialBumber(index, row, dtype) {
+                let tempString=dtype==1? '备注' : '流水';
+                this.$prompt('请输入'+row.merchantName+tempString, '提示', {
                     confirmButtonText: '确定',
                     inputPlaceholder:"流水号由数字组成",
                     cancelButtonText: '取消',
-                    inputPattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{2,20}$/,
+                   // inputPattern: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{2,20}$/,
                     inputErrorMessage: '格式不正确，应该由2-20位数字和字符组成'
                 }).then(({ value }) => {
-                    this.$message({
-                        type: 'success',
-                        message: '你的流水号: ' + value
+
+                    const request={
+                        "id":row.id, //记录id Integer
+                        "remark": dtype==1? value :'', //追加备注
+                        "supplySerialNum": dtype==2? value :'', //追加流水号  //留空表示不修改
+                    }
+                    this.$axios.post(__URILIST[17],request).then((res) => {                        
+                        
+                        if(dtype==1){
+                            this.gridData[index].remark=value;
+                        }else{
+                            this.gridData[index].supplySerialNum=value;
+                        }                   
+                        this.$message({
+                            type: 'success',
+                            message: '恭喜您操作成功! '   // + value   //考虑成功后写到的数据，反应到view里
+                        });
+
+                    }).catch(error=>{
+                        this.$alert(error, '错误提示', {
+                            confirmButtonText: '确定'                    
+                        });
                     });
+
+
+
                 }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: '取消输入'
+                        message: '您取消了操作'
                     });       
                 });
            },          

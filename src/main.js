@@ -12,7 +12,8 @@ import "babel-polyfill";
 
 Vue.use(ElementUI);
 
-axios.defaults.headers.common['TN-REQ-DATA-TYPE'] = 'json/text';
+//axios.defaults.headers.common['TN-REQ-DATA-TYPE'] = 'json/text';
+//axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 Vue.prototype.$axios = axios;
 new Vue({
     router,

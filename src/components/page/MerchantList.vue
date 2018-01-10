@@ -15,7 +15,7 @@
                 <el-option key="1" label="广东省" value="广东省"></el-option>
                 <el-option key="2" label="湖南省" value="湖南省"></el-option>
             </el-select> -->
-            <el-input v-model="select_word" placeholder="姓名或是商户名称搜索" class="handle-input mr10"></el-input>
+            <el-input v-model="select_word" placeholder="ID或是商户名称搜索" class="handle-input mr10"></el-input>
             <el-button type="primary" icon="search" @click="search">搜索</el-button>
         </div>
 
@@ -95,13 +95,14 @@
                 //console.log(this.url);
 
                 let request={
-                    merchantName:self.select_word,
+                   // merchantName:self.select_word,
+                    selectWord:self.select_word,
                     start:(self.cur_page-1)*10,
                     limit:10  //每页显示10条
                 }
                 self.$axios.post(__URILIST[0], request).then((res) => {
                     self.tableData = res.data.data.rows;
-                    self.total=res.data.count || 0;
+                    self.total=res.data.data.count || 0;
                     self.is_loading = false;
                    // console.log(this.tableData);
                 }).catch(err=>{
