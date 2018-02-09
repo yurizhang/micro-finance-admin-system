@@ -1,6 +1,9 @@
 <template>
     <div class="header">
-        <div class="logo">消费金融-小贷通道后台</div>
+        <div class="logo">消费金融-小贷通道后台
+                     <button @click="Collapse">开与关</button>
+               
+        </div>
         <div class="user-info">
             <el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
@@ -15,12 +18,13 @@
     </div>
 </template>
 <script>
+    import BUS from '../../plugs/bus'
     export default {
-        data() {
-            return {
-                name: 'Yuri Zhang'
-            }
-        },
+        // data() {
+        //     return {
+        //         name: 'Yuri Zhang'               
+        //     }
+        // },
         computed:{
             username(){
                 let username = localStorage.getItem('ms_username');
@@ -33,48 +37,15 @@
                     localStorage.removeItem('ms_username')
                     this.$router.push('/login');
                 }
+            },
+            //收起打开按钮
+            Collapse(){                
+                BUS.$emit('isCollapse'); //调用兄弟sidebar里的事件                
+                //console.log("调用sidebar里的事件 :isCollapse:");
+                console.log(this.$parent)
+                this.$parent.changeContentPostion();//调用爸爸修改content的大小，使用contentcCollapse样式   
             }
         }
     }
 </script>
-<style scoped>
-    .header {
-        position: relative;
-        box-sizing: border-box;
-        width: 100%;
-        height: 70px;
-        font-size: 22px;
-        line-height: 70px;
-        color: #fff;
-    }
-    .header .logo{
-        float: left;
-        width:250px;
-        text-align: center;
-    }
-    .user-info {
-        float: right;
-        padding-right: 50px;
-        font-size: 16px;
-        color: #fff;
-    }
-    .user-info .el-dropdown-link{
-        position: relative;
-        display: inline-block;
-        padding-left: 50px;
-        color: #fff;
-        cursor: pointer;
-        vertical-align: middle;
-    }
-    .user-info .user-logo{
-        position: absolute;
-        left:0;
-        top:15px;
-        width:40px;
-        height:40px;
-        border-radius: 50%;
-    }
-    .el-dropdown-menu__item{
-        text-align: center;
-    }
-</style>
+

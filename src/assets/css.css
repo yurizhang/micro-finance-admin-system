@@ -8,6 +8,7 @@ body{
     font-family:"Helvetica Neue",Helvetica, "microsoft yahei", arial, STHeiTi, sans-serif;
 }
 a{text-decoration: none}
+
 .content{
     background: none repeat scroll 0 0 #fff;
     position: absolute;
@@ -19,6 +20,10 @@ a{text-decoration: none}
     padding:40px;
     box-sizing: border-box;
     overflow-y: scroll;
+}
+/* 点收缩后的样式 */
+.contentcCollapse{
+    left: 65px;
 }
 .crumbs{
     margin-bottom: 20px;
@@ -91,17 +96,58 @@ a{text-decoration: none}
 .sidebar{
     display: block;
     position: absolute;
-    width: 250px;
+    /* width: 250px; */
     left: 0;
     top: 70px;
     bottom:0;
-    background: #2E363F;
+    /* background: #2E363F; */
 }
 .sidebar > ul {
     height:100%;
 }
 
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-width: 250px;
-min-height: 400px;
+    width: 250px;
+    min-height: 400px;
+}
+
+/*home css*/
+.header {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    height: 70px;
+    font-size: 22px;
+    line-height: 70px;
+    color: #fff;
+}
+.header .logo{
+    float: left;
+    /* width:250px; */
+    text-align: center;
+}
+.user-info {
+    float: right;
+    padding-right: 50px;
+    font-size: 16px;
+    color: #fff;
+}
+.user-info .el-dropdown-link{
+    position: relative;
+    display: inline-block;
+    padding-left: 50px;
+    color: #fff;
+    cursor: pointer;
+    vertical-align: middle;
+}
+.user-info .user-logo{
+    position: absolute;
+    left:0;
+    top:15px;
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+}
+.el-dropdown-menu__item{
+    text-align: center;
 }

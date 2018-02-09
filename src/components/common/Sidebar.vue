@@ -5,29 +5,66 @@
                 <el-radio-button :label="false">展开</el-radio-button>
                 <el-radio-button :label="true">收起</el-radio-button>
             </el-radio-group> -->
-        <el-menu :default-active="onRoutes" class="el-menu-vertical-demo"  unique-opened router  background-color="#324157"
-      text-color="#fff"
-      active-text-color="#20a0ff" :collapse="isCollapse">
+
+
+<!-- <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" background-color="#324157"  text-color="#fff"  active-text-color="#20a0ff">
+
+    <el-submenu index="1">
+            <template slot="title">
+                <i class="el-icon-location"></i>
+                <span slot="title">导航一</span>
+            </template>
+            <el-menu-item-group>
+                <span slot="title">分组一</span>
+                <el-menu-item index="1-1">选项1</el-menu-item>
+                <el-menu-item index="1-2">选项2</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group title="分组2">
+                <el-menu-item index="1-3">选项3</el-menu-item>
+            </el-menu-item-group>
+            <el-submenu index="1-4">
+                <span slot="title">选项4</span>
+                <el-menu-item index="1-4-1">选项1</el-menu-item>
+            </el-submenu>
+    </el-submenu>
+
+  <el-menu-item index="2">
+    <i class="el-icon-menu"></i>
+    <span slot="title">导航二</span>
+  </el-menu-item>
+
+  <el-menu-item index="3">
+    <i class="el-icon-setting"></i>
+    <span slot="title">导航三</span>
+  </el-menu-item>
+
+</el-menu> -->
+         <!-- unique-opened:是否只保持一个子菜单的展开  router:	是否使用 vue-router 的模式，启用该模式会在激活导航时以 index 作为 path 进行路由跳转-->
+        <el-menu :default-active="onRoutes" class="el-menu-vertical-demo"  unique-opened router  background-color="#324157"  text-color="#fff"  active-text-color="#20a0ff" :collapse="isCollapse">
             <template v-for="item in items">
                 <template v-if="item.subs">
                     <el-submenu :index="item.index" :key="item.index">
-                        <template slot="title"><i :class="item.icon"></i>{{ item.title }}</template>
-                        <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">{{ subItem.title }}
-                        </el-menu-item>
+                        <template slot="title"><i :class="item.icon"></i><span slot="title">{{ item.title }}</span></template>
+                        <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index"><span slot="title">{{ subItem.title }}</span></el-menu-item>
                     </el-submenu>
                 </template>
                 <template v-else>
                     <el-menu-item :index="item.index" :key="item.index">
-                        <i :class="item.icon"></i>{{ item.title }}
+                        <i :class="item.icon"></i><span slot="title">{{ item.title }}</span>
                     </el-menu-item>
                 </template>
             </template>
         </el-menu>
+
+
+
     </div>
 </template>
 
 <script>
+    import BUS from '../../plugs/bus'
     export default {
+        //props: ['isCollapse'],  //从父亲home转来
         data() {
             return {
                 isCollapse:false,
@@ -105,12 +142,24 @@
                 ]
             }
         },
+        created(){
+            BUS.$on("isCollapse",()=>{   //这里最好用箭头函数，不然this指向有问题
+                 this.isCollapse = !this.isCollapse;
+            })
+        },
         computed:{
             onRoutes(){
                 return this.$route.path.replace('/','');
+            } 
+        },
+        methods: {
+            handleOpen(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose(key, keyPath) {
+                console.log(key, keyPath);
             }
         }
     }
 </script>
-
 
