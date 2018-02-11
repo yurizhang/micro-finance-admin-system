@@ -143,7 +143,7 @@
             }
         },
         created(){
-            BUS.$on("isCollapse",()=>{   //这里最好用箭头函数，不然this指向有问题
+            BUS.$on("isCollapse",()=>{   
                  this.isCollapse = !this.isCollapse;
             })
         },

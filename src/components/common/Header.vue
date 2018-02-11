@@ -1,7 +1,7 @@
 <template>
     <div class="header">
-        <div class="logo">消费金融-小贷通道后台
-                     <button @click="Collapse">开与关</button>
+        <div class="logo">消费金融-小贷通道后台<i  @click="Collapse" class="el-icon-menu"></i>
+                    
                
         </div>
         <div class="user-info">

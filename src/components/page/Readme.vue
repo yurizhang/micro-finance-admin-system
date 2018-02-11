@@ -11,8 +11,7 @@
                 <h1>消费金融-小贷通道后台管理系统(Micro-Finance)</h1>
                 <p>基于Vue.js 2.x系列 + Element UI 的后台管理系统解决方案</p>
                 <h2>前言</h2>
-                <p> Power by Yuri Zhang</p>
-                
+                <p> Power by Yuri Zhang</p>               
     
             </article>
         </div>
